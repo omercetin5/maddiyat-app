@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maddiyat — Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand-row">
+            <div class="brand-mark small">₺</div>
+            <div>
+                <h1>Maddiyat Paneli</h1>
+                <span class="muted">Hoş geldin, <strong id="userLabel">admin</strong></span>
+            </div>
+        </div>
+        <button class="btn btn-ghost" id="logoutBtn">Çıkış</button>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>1. Gelir Kaynakları</h2>
+            <p class="muted">Aylık tüm gelirlerinizi tek tek ekleyin (maaş, freelance, kira, vb.).</p>
+
+            <div class="row">
+                <label class="inline">
+                    <span>Kaç gelir kaynağınız var?</span>
+                    <input type="number" id="incomeCount" min="1" max="20" value="1">
+                </label>
+                <button type="button" class="btn btn-secondary" id="applyIncomeCount">Uygula</button>
+            </div>
+
+            <div id="incomeList" class="dyn-list"></div>
+            <button type="button" class="btn btn-link" id="addIncome">+ Gelir ekle</button>
+        </section>
+
+        <section class="card">
+            <h2>2. Yatırım Tercihi</h2>
+            <p class="muted">Aylık gelirinizin yüzde kaçını yatırım/birikim olarak ayırmak istersiniz?</p>
+            <div class="slider-row">
+                <input type="range" id="investmentPct" min="0" max="80" value="20">
+                <output id="investmentPctValue">%20</output>
+            </div>
+            <div class="muted small" id="investmentPreview">Toplam gelir girilince hesaplanacak.</div>
+
+            <div class="row" style="margin-top:16px; gap:16px; flex-wrap:wrap;">
+                <label class="inline">
+                    <span>Kaç ay boyunca yatırım yapmak istiyorsunuz?</span>
+                    <input type="number" id="investmentMonths" min="1" max="600" value="12">
+                </label>
+                <label class="inline">
+                    <span>Fiyat hedefiniz var mı? (₺, opsiyonel)</span>
+                    <input type="number" id="priceTarget" min="0" step="1000" placeholder="örn. 500000">
+                </label>
+            </div>
+            <div class="muted small" id="targetPreview"></div>
+        </section>
+
+        <section class="card">
+            <h2>3. Aylık Giderler</h2>
+            <p class="muted">Her kategori için aylık ortalama harcamanızı girin. Kullanmadığınız satırları boş bırakabilirsiniz.</p>
+            <div id="expenseList" class="dyn-list expense-grid"></div>
+            <button type="button" class="btn btn-link" id="addExpense">+ Özel kategori ekle</button>
+        </section>
+
+        <section class="card">
+            <h2>4. Tasarruf Hedefleri</h2>
+            <p class="muted">Giderlerinizi hangi kategorilerden, ne kadar kısmak istersiniz?</p>
+            <div id="cutList" class="dyn-list"></div>
+            <div class="muted small">İpucu: 3-5 kategori seçmek ve her birinden %10-30 kısıntı yapmak gerçekçidir.</div>
+        </section>
+
+        <section class="card">
+            <h2>5. Topluluk İstatistikleri</h2>
+            <p class="muted">Diğer kullanıcılar hangi kategorilerden daha çok / daha az kısıyor? Siz analiz yaptıkça veri zenginleşir.</p>
+            <div id="communityStats">
+                <div class="muted small">Veriler yükleniyor...</div>
+            </div>
+        </section>
+
+        <div class="actions">
+            <button type="button" class="btn btn-primary big" id="analyzeBtn">Analiz Et ve Grafikleri Gör</button>
+            <button type="button" class="btn btn-ghost" id="resetBtn">Sıfırla</button>
+        </div>
+
+        <section id="results" class="results hidden">
+            <h2 class="section-title">Sonuçlar</h2>
+
+            <div class="stats-grid">
+                <div class="stat stat-income">
+                    <span class="stat-label">Toplam Gelir</span>
+                    <span class="stat-value" id="statIncome">0 ₺</span>
+                </div>
+                <div class="stat stat-expense">
+                    <span class="stat-label">Toplam Gider</span>
+                    <span class="stat-value" id="statExpense">0 ₺</span>
+                </div>
+                <div class="stat stat-invest">
+                    <span class="stat-label">Yatırım (Aylık)</span>
+                    <span class="stat-value" id="statInvest">0 ₺</span>
+                </div>
+                <div class="stat stat-net">
+                    <span class="stat-label">Net Tasarruf</span>
+                    <span class="stat-value" id="statNet">0 ₺</span>
+                </div>
+                <div class="stat stat-rate">
+                    <span class="stat-label">Tasarruf Oranı</span>
+                    <span class="stat-value" id="statRate">%0</span>
+                </div>
+                <div class="stat stat-cut">
+                    <span class="stat-label">Kısıntı Kazancı</span>
+                    <span class="stat-value" id="statCut">0 ₺</span>
+                </div>
+            </div>
+
+            <div class="insights" id="insights"></div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Bütçe Dağılımı</h3>
+                    <canvas id="budgetDonut"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Gider Kategorileri</h3>
+                    <canvas id="expensePie"></canvas>
+                </div>
+                <div class="chart-card wide">
+                    <h3>Mevcut vs. Tasarruf Sonrası</h3>
+                    <canvas id="compareBar"></canvas>
+                </div>
+                <div class="chart-card wide">
+                    <h3 id="projectionTitle">12 Aylık Kümülatif Projeksiyon</h3>
+                    <canvas id="projectionLine"></canvas>
+                </div>
+                <div class="chart-card wide">
+                    <h3>Gelir Kaynakları</h3>
+                    <canvas id="incomeBar"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Auth gate
+        const user = sessionStorage.getItem("maddiyat_user");
+        if (!user) {
+            window.location.href = "login.html";
+        } else {
+            document.getElementById("userLabel").textContent = user;
+        }
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            sessionStorage.removeItem("maddiyat_user");
+            window.location.href = "login.html";
+        });
+    </script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

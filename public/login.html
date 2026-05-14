@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maddiyat — Giriş</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-body">
+    <div class="login-card">
+        <div class="login-brand">
+            <div class="brand-mark">₺</div>
+            <h1>Maddiyat</h1>
+            <p class="brand-sub">Bütçenizi anlayın, varlığınızı büyütün.</p>
+        </div>
+        <form id="loginForm" class="login-form" autocomplete="on">
+            <label>
+                <span>Kullanıcı Adı</span>
+                <input type="text" id="username" name="username" autocomplete="username" required autofocus>
+            </label>
+            <label>
+                <span>Şifre</span>
+                <input type="password" id="password" name="password" autocomplete="current-password" required>
+            </label>
+            <div id="errorBox" class="error-msg hidden"></div>
+            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+            <div class="hint">Demo: <code>admin</code> / <code>admin</code></div>
+        </form>
+    </div>
+    <script>
+        // Eğer önceden giriş yaptıysa direkt dashboard'a
+        if (sessionStorage.getItem("maddiyat_user")) {
+            window.location.href = "dashboard.html";
+        }
+        const form = document.getElementById("loginForm");
+        const errorBox = document.getElementById("errorBox");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const u = document.getElementById("username").value.trim();
+            const p = document.getElementById("password").value.trim();
+            if (u === "admin" && p === "admin") {
+                sessionStorage.setItem("maddiyat_user", u);
+                window.location.href = "dashboard.html";
+            } else {
+                errorBox.textContent = "Geçersiz kullanıcı adı veya şifre.";
+                errorBox.classList.remove("hidden");
+            }
+        });
+    </script>
+</body>
+</html>
