@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maddiyat — Giriş</title>
+    <script>
+        // Tema ön-yükleme (FOUC önler)
+        (function() {
+            var saved = localStorage.getItem("maddiyat_theme");
+            if (saved === "dark" || (!saved && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+                document.documentElement.classList.add("dark");
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="login-body">
+    <button id="themeToggle" class="theme-toggle" title="Tema değiştir"
+            style="position:fixed; top:1rem; right:1rem; z-index:100; background:rgba(255,255,255,0.15); color:#fff; border-color:rgba(255,255,255,0.3); backdrop-filter:blur(8px);">
+        🌙
+    </button>
     <div class="login-card">
         <div class="login-brand">
             <div class="brand-mark">₺</div>
@@ -27,6 +40,19 @@
             <div class="hint">Demo: <code>admin</code> / <code>admin</code></div>
         </form>
     </div>
+    <script>
+        // Tema toggle
+        (function() {
+            var btn = document.getElementById("themeToggle");
+            var setIcon = function() { btn.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙"; };
+            setIcon();
+            btn.addEventListener("click", function() {
+                var isDark = document.documentElement.classList.toggle("dark");
+                localStorage.setItem("maddiyat_theme", isDark ? "dark" : "light");
+                setIcon();
+            });
+        })();
+    </script>
     <script>
         // Eğer önceden giriş yaptıysa direkt dashboard'a
         if (sessionStorage.getItem("maddiyat_user")) {
