@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maddiyat — İş & Psikoloji Analizi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand-row">
+            <div class="brand-mark small">🧠</div>
+            <div>
+                <h1>İş & Psikoloji Analizi</h1>
+                <span class="muted">Mesleğin ruh sağlığını ve cüzdanını nasıl etkiliyor?</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <a href="dashboard.html" class="btn btn-ghost">← Bütçe Paneli</a>
+            <button class="btn btn-ghost" id="logoutBtn">Çıkış</button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Premium banner -->
+        <div id="premiumBanner" class="premium-banner hidden">
+            <span>✨ Premium aboneliğin aktif (Demo)</span>
+            <button id="cancelPremium" class="btn btn-link">Demo'yu kapat</button>
+        </div>
+
+        <!-- Section 1: Meslek -->
+        <section class="card">
+            <h2>1. Mesleğin</h2>
+            <p class="muted">Hangi alanda çalıştığını seç — analizler ve karşılaştırmalar buna göre kişiselleşir.</p>
+            <div class="row">
+                <label class="inline" style="max-width: 380px;">
+                    <span>Meslek / Sektör</span>
+                    <select id="profession"></select>
+                </label>
+                <label class="inline">
+                    <span>Kaç yıldır?</span>
+                    <input type="number" id="yearsInRole" min="0" max="60" value="3">
+                </label>
+            </div>
+        </section>
+
+        <!-- Section 2: Free survey -->
+        <section class="card" id="freeSurveyCard">
+            <h2>2. Hızlı Değerlendirme <span class="muted small">(ücretsiz · 5 soru)</span></h2>
+            <p class="muted">Sektörünle kıyaslı temel sonuç gösterir.</p>
+
+            <div class="survey-question">
+                <label>Son 1 ayda işin nedeniyle ne sıklıkta gergin/stresli hissettin?</label>
+                <div class="slider-row">
+                    <input type="range" id="q_stress" min="1" max="10" value="5">
+                    <output id="q_stress_val">5</output>
+                </div>
+                <div class="muted small">1 = Hiç &nbsp;&nbsp; 10 = Sürekli</div>
+            </div>
+
+            <div class="survey-question">
+                <label>İşin uyku düzenini etkiliyor mu?</label>
+                <div class="radio-group" data-name="q_sleep">
+                    <label><input type="radio" name="q_sleep" value="0"> Hiç</label>
+                    <label><input type="radio" name="q_sleep" value="1"> Bazen</label>
+                    <label><input type="radio" name="q_sleep" value="2"> Sık</label>
+                    <label><input type="radio" name="q_sleep" value="3"> Sürekli</label>
+                </div>
+            </div>
+
+            <div class="survey-question">
+                <label>İş yorgunluğunu telafi etmek için "kendini ödüllendiren" harcamalar yapıyor musun?</label>
+                <div class="radio-group" data-name="q_comp_spend">
+                    <label><input type="radio" name="q_comp_spend" value="0"> Yok</label>
+                    <label><input type="radio" name="q_comp_spend" value="1"> Nadiren</label>
+                    <label><input type="radio" name="q_comp_spend" value="2"> Sık sık</label>
+                    <label><input type="radio" name="q_comp_spend" value="3"> Çok sık</label>
+                </div>
+            </div>
+
+            <div class="survey-question">
+                <label>İşinin baskısı mali kararlarını etkiliyor mu?</label>
+                <div class="radio-group" data-name="q_decisions">
+                    <label><input type="radio" name="q_decisions" value="0"> Hayır</label>
+                    <label><input type="radio" name="q_decisions" value="1"> Az</label>
+                    <label><input type="radio" name="q_decisions" value="2"> Belirgin</label>
+                    <label><input type="radio" name="q_decisions" value="3"> Yoğun</label>
+                </div>
+            </div>
+
+            <div class="survey-question">
+                <label>Şu an mesleğine devam etmek istiyor musun?</label>
+                <div class="radio-group" data-name="q_continue">
+                    <label><input type="radio" name="q_continue" value="2"> Evet, kesinlikle</label>
+                    <label><input type="radio" name="q_continue" value="1"> Belirsiz</label>
+                    <label><input type="radio" name="q_continue" value="0"> Hayır</label>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-primary big" id="submitFree">Ücretsiz Sonucu Gör</button>
+            </div>
+        </section>
+
+        <!-- Free Result -->
+        <section id="freeResult" class="card hidden">
+            <h2>📊 Hızlı Değerlendirme Sonucun</h2>
+            <div id="freeResultBody"></div>
+
+            <div class="upsell" id="upsellBlock">
+                <h3>💎 Daha derinine inmek ister misin?</h3>
+                <p class="muted small" style="margin: 0.4rem 0 0.8rem;">Premium abonelik şunları açar:</p>
+                <ul class="upsell-list">
+                    <li>15+ detaylı sorulu kapsamlı anket (tükenmişlik, sosyal baskı, telafi davranışları)</li>
+                    <li>Kişiselleştirilmiş AI raporu (iş–psikoloji–para üçgenine özel, empatik mentor tonunda)</li>
+                    <li>"Kayda değer bilgiler" paneli (sektörüne özel araştırma bulguları)</li>
+                    <li>Geçmiş analizlerini saklama ve karşılaştırma</li>
+                </ul>
+                <div class="actions" style="justify-content: flex-start;">
+                    <button class="btn btn-primary big" id="upgradePremium">Premium'a Geç — 99₺/ay (Demo)</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium section -->
+        <section id="premiumSection" class="hidden" style="display: flex; flex-direction: column; gap: 1.2rem;">
+
+            <!-- Detailed survey -->
+            <section class="card" id="detailedSurveyCard">
+                <h2>3. Detaylı Anket <span class="muted small">(Premium · 8 soru)</span></h2>
+                <p class="muted">Daha derin sorular — AI raporun bu yanıtlara göre üretilir.</p>
+
+                <div class="survey-question">
+                    <label>Tükenmişlik belirtilerinden hangileri sende var? (Birden çok seçebilirsin)</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="burnout" value="emotional"> Duygusal tükenmişlik</label>
+                        <label><input type="checkbox" name="burnout" value="depersonalization"> İşe uzak/duygusuz hissetme</label>
+                        <label><input type="checkbox" name="burnout" value="achievement"> Başarı hissinin azalması</label>
+                        <label><input type="checkbox" name="burnout" value="physical"> Fiziksel yorgunluk / baş ağrısı</label>
+                        <label><input type="checkbox" name="burnout" value="cognitive"> Konsantrasyon güçlüğü</label>
+                        <label><input type="checkbox" name="burnout" value="cynicism"> İşe karşı sinizm/alay</label>
+                    </div>
+                </div>
+
+                <div class="survey-question">
+                    <label>İşyerinde sosyal baskı kaynakların hangileri? (Birden çok seçebilirsin)</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="pressure" value="boss"> Yönetici/patron baskısı</label>
+                        <label><input type="checkbox" name="pressure" value="peers"> Meslektaş rekabeti</label>
+                        <label><input type="checkbox" name="pressure" value="clients"> Müşteri/iş sahibi baskısı</label>
+                        <label><input type="checkbox" name="pressure" value="performance"> Performans hedef baskısı</label>
+                        <label><input type="checkbox" name="pressure" value="hours"> Mesai/saat baskısı</label>
+                        <label><input type="checkbox" name="pressure" value="conflict"> Çatışma / mobbing</label>
+                    </div>
+                </div>
+
+                <div class="survey-question">
+                    <label>Rahatlama amaçlı hangi tip harcamaları yapıyorsun?</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="comfort" value="shopping"> Online alışveriş</label>
+                        <label><input type="checkbox" name="comfort" value="dining"> Dışarıda yemek / teslimat</label>
+                        <label><input type="checkbox" name="comfort" value="entertainment"> Eğlence (sinema, konser)</label>
+                        <label><input type="checkbox" name="comfort" value="alcohol"> Alkol / sigara</label>
+                        <label><input type="checkbox" name="comfort" value="gaming"> Oyun / dijital içerik</label>
+                        <label><input type="checkbox" name="comfort" value="impulsive"> Anlık alımlar</label>
+                    </div>
+                </div>
+
+                <div class="survey-question">
+                    <label>Aylık ortalama "rahatlama harcaman" tahminin (₺)?</label>
+                    <input type="number" id="q_comfort_amount" min="0" step="100" placeholder="örn. 1500">
+                </div>
+
+                <div class="survey-question">
+                    <label>Son 6 ayda işin psikolojik yükü nedeniyle sağlığa yaptığın harcama (doktor, terapi, ilaç, takviye)?</label>
+                    <input type="number" id="q_health_amount" min="0" step="100" placeholder="örn. 800">
+                </div>
+
+                <div class="survey-question">
+                    <label>Gelecek 5 yıl için ne hissediyorsun?</label>
+                    <div class="slider-row">
+                        <input type="range" id="q_future" min="1" max="10" value="5">
+                        <output id="q_future_val">5</output>
+                    </div>
+                    <div class="muted small">1 = Çok kötümser &nbsp;&nbsp; 10 = Çok umutlu</div>
+                </div>
+
+                <div class="survey-question">
+                    <label>Seni en çok zorlayan şey ne? (Kendi cümlelerinle birkaç satır)</label>
+                    <textarea id="q_open_difficulty" rows="3" placeholder="Bu kısım rapora dahil edilir — istediğin kadar açık ol."></textarea>
+                </div>
+
+                <div class="survey-question">
+                    <label>Bu zorluk sence maddi olarak neye mal oluyor?</label>
+                    <textarea id="q_open_cost" rows="3" placeholder="Direkt para ya da kaçırılan fırsatlar — ne hissediyorsan."></textarea>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn-primary big" id="generateReport">AI Raporumu Üret</button>
+                </div>
+            </section>
+
+            <!-- AI report -->
+            <section id="aiReport" class="card report-card hidden">
+                <h2>🤖 Kişisel Raporun</h2>
+                <div class="report-meta">
+                    <span class="muted small">Üretildi: <span id="reportDate"></span> · <span id="reportSector"></span></span>
+                </div>
+                <div class="report-body" id="reportBody"></div>
+            </section>
+
+            <!-- Notable insights -->
+            <section class="card notable-card" id="notableCard">
+                <h2>📚 Kayda Değer Bilgiler — <span id="notableSector">Sektörüne özel</span></h2>
+                <p class="muted">Sektörel veriler ve araştırma odaklı bulgular (premium içerik).</p>
+                <div id="notableContent"></div>
+            </section>
+
+            <!-- Past reports -->
+            <section class="card hidden" id="pastReportsCard">
+                <h2>📁 Önceki Raporların</h2>
+                <p class="muted small">Geçmiş analizlerini buradan tekrar okuyabilirsin.</p>
+                <div class="past-reports-list" id="pastReportsList"></div>
+            </section>
+
+        </section>
+    </main>
+
+    <!-- Payment Modal -->
+    <div class="modal-overlay hidden" id="paymentModal">
+        <div class="modal">
+            <h2>Premium Aboneliği</h2>
+            <p class="muted">Aylık <strong>99₺</strong> ile şu özellikler açılır:</p>
+            <ul>
+                <li>Detaylı anket (15+ soru) ile derin değerlendirme</li>
+                <li>Kişisel AI raporu (her yeni anket için yeni rapor)</li>
+                <li>Sektörüne özel "Kayda Değer Bilgiler" paneli</li>
+                <li>Geçmiş raporlarını saklama ve karşılaştırma</li>
+            </ul>
+            <div class="demo-warning">
+                ⚠️ Bu bir <strong>demo</strong>. Gerçek ödeme alınmıyor — bu buton aboneliği sadece bu cihazda test amaçlı aktif eder.
+            </div>
+            <div class="actions" style="justify-content: flex-end;">
+                <button class="btn btn-ghost" id="cancelPayment">Vazgeç</button>
+                <button class="btn btn-primary" id="confirmPayment">Ödemeyi Tamamla (Demo)</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auth gate (mevcut admin/admin sistemi)
+        const user = sessionStorage.getItem("maddiyat_user");
+        if (!user) {
+            window.location.href = "login.html";
+        }
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            sessionStorage.removeItem("maddiyat_user");
+            window.location.href = "login.html";
+        });
+    </script>
+    <script src="psikoloji.js"></script>
+</body>
+</html>
