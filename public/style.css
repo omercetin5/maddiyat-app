@@ -742,7 +742,7 @@ textarea:focus {
     color: var(--primary);
     margin: 0 0 0.7rem;
 }
-.lib-hero p { margin: 0; color: var(--text-soft); line-height: 1.7; max-width: 70ch; }
+.lib-hero p { margin: 0; color: var(--text-soft); line-height: 1.7; }
 
 .library { display: flex; flex-direction: column; gap: 0.7rem; }
 
