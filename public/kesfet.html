@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maddiyat — Para & Zihin</title>
+    <script>
+        (function() {
+            var saved = localStorage.getItem("maddiyat_theme");
+            if (saved === "dark" || (!saved && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+                document.documentElement.classList.add("dark");
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand-row">
+            <div class="brand-mark small">📚</div>
+            <div>
+                <h1>Para &amp; Zihin</h1>
+                <span class="muted">Cüzdanını yöneten görünmez psikoloji</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <a href="dashboard.html" class="btn btn-ghost">← Bütçe Paneli</a>
+            <a href="psikoloji.html" class="btn btn-ghost">🧠 Psikoloji Analizi</a>
+            <button class="theme-toggle" id="themeToggle" title="Tema değiştir">🌙</button>
+            <button class="btn btn-ghost" id="logoutBtn">Çıkış</button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="lib-hero">
+            <h2>Cüzdanını gerçekte kim yönetiyor?</h2>
+            <p class="lead">Sen mi, yoksa beynindeki görünmez tetikleyiciler mi?</p>
+            <p>Çoğumuz paranın mantıkla harcandığını sanır. Oysa araştırmalar tersini söylüyor — harcamalarımızın çoğu duygular, alışkanlıklar ve fark etmediğimiz psikolojik oyunlarla şekilleniyor. İyi haber şu: bu mekanizmaları bilen insan daha bilinçli karar veriyor ve cebinde daha çok para kalıyor. Aşağıdaki başlıklardan merak ettiğini aç, gerisini kaynağından oku.</p>
+        </section>
+
+        <section class="library">
+
+            <!-- 1 -->
+            <details class="lib-item">
+                <summary>
+                    <span class="lib-emoji">🧠</span>
+                    <span>
+                        <span class="lib-q">Mutsuzken neden alışveriş yapıyoruz?</span>
+                        <span class="lib-teaser">Üzüntü, stres ve can sıkıntısı cüzdanını sessizce boşaltıyor olabilir.</span>
+                    </span>
+                    <span class="lib-chev">▾</span>
+                </summary>
+                <div class="lib-body">
+                    <p>Duygusal harcama; ihtiyaçtan değil, korku, öfke, bunalmışlık ya da güvensizlik gibi duygulardan para harcamaktır. Reklamcılar tam da bu duyguları tetiklemek için tasarlanmış taktikler kullanır — çünkü biz duygularımızla harcadıkça onların kazancı artar.</p>
+                    <p>Çarpıcı olan şu: nüfusun yaklaşık <strong>%5'inde alışveriş bağımlılığı</strong> var; her 20 kişiden biri hayatının bir döneminde bunu yaşıyor. Genç ve kadın olmak riski artırıyor. Aşırı harcama; borç, ilişki çatışmaları ve özgüven kaybına kadar uzanabiliyor.</p>
+                    <p>Çözüm "duygusal zekâ": satın almadan önce hangi duygunun seni dürttüğünü fark etmek. Duyguların ne aldığını belirlemeyi bıraktığında, hem ruhsal hem finansal olarak nefes alıyorsun.</p>
+                    <a class="lib-source" href="https://www.psychologytoday.com/us/blog/mental-wealth/202305/the-psychology-of-emotional-spending" target="_blank" rel="noopener noreferrer">Kaynağı oku: Psychology Today →</a>
+                </div>
+            </details>
+
+            <!-- 2 -->
+            <details class="lib-item">
+                <summary>
+                    <span class="lib-emoji">💳</span>
+                    <span>
+                        <span class="lib-q">Kredi kartı beynini nasıl kandırıyor?</span>
+                        <span class="lib-teaser">Aynı bileti, karta nakitin iki katı fiyata almaya razıyız. Neden?</span>
+                    </span>
+                    <span class="lib-chev">▾</span>
+                </summary>
+                <div class="lib-body">
+                    <p>MIT'den Prof. Drazen Prelec, tükenmiş bir basketbol maçı bileti için sessiz açık artırma düzenledi: katılımcıların yarısı yalnızca nakit, yarısı yalnızca kredi kartıyla ödeyebiliyordu. Sonuç araştırmacıları bile şaşırttı — <strong>kart kullananlar ortalama iki kattan fazla teklif verdi.</strong></p>
+                    <p>Yani 1 lirayı kartla harcamanın psikolojik "acısı" sadece 50 kuruş. Kredi kartı sinsidir çünkü hazzı (alışveriş anı) ödemenin acısından koparır: harcarken ödemeyi düşünmez, öderken ne aldığını hatırlamazsın.</p>
+                    <p>Prelec'in bir kavramı daha var — "ahlaki vergi": bir kuralı çiğneyip pahalı bir şey aldığında hissettiğin suçluluk, o şeyin keyfini de azaltır. Para hiçbir zaman tamamen mantıkla harcanmaz.</p>
+                    <a class="lib-source" href="https://betterworld.mit.edu/spectrum/issues/winter-1999/the-psychology-of-spending/" target="_blank" rel="noopener noreferrer">Kaynağı oku: MIT for a Better World →</a>
+                </div>
+            </details>
+
+            <!-- 3 -->
+            <details class="lib-item">
+                <summary>
+                    <span class="lib-emoji">📱</span>
+                    <span>
+                        <span class="lib-q">Telefonla ödemek seni daha çok mu harcatıyor?</span>
+                        <span class="lib-teaser">Para görünmez olunca, beynin onu daha az "gerçek" sayıyor.</span>
+                    </span>
+                    <span class="lib-chev">▾</span>
+                </summary>
+                <div class="lib-body">
+                    <p>"Spendception" (harcama + algı), dijital ödemelerin harcama direncimizi nasıl düşürdüğünü anlatan yeni bir kavram. Nakitle paranın cüzdandan çıkışını fiziksel olarak görürsün; dijital ödemede bu uyarı kaybolur. Harcama "fark edilmez" hale gelir ve insanlar mali etkisini hissetmeden daha çok harcar.</p>
+                    <p>1.162 kişilik bir araştırmada bu etki net biçimde ortaya çıktı; bir makine öğrenmesi modeli sonucu <strong>%97 doğrulukla</strong> tahmin etti. En çok etkilenen yaş grubu <strong>25–34</strong>. Kadınlar, dijital ödeme kaynaklı dürtüsel alışverişe erkeklerden belirgin şekilde daha yatkın bulundu.</p>
+                    <p>İronisi: ödeme kolaylığı bize "kontrol" hissi verir; oysa harcama ile sonucu arasındaki bağı tam da o kolaylık zayıflatır.</p>
+                    <a class="lib-source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11939284/" target="_blank" rel="noopener noreferrer">Kaynağı oku: National Library of Medicine →</a>
+                </div>
+            </details>
+
+            <!-- 4 -->
+            <details class="lib-item">
+                <summary>
+                    <span class="lib-emoji">🧲</span>
+                    <span>
+                        <span class="lib-q">Yeni bir şey almak neden sadece anlık mutluluk veriyor?</span>
+                        <span class="lib-teaser">Dopamin, statü ve "kıtlık" oyunu — zihnin nasıl yönlendiriliyor?</span>
+                    </span>
+                    <span class="lib-chev">▾</span>
+                </summary>
+                <div class="lib-body">
+                    <p>Yeni bir ürün almak beyinde dopamin salgılatır — kısa süren bir haz. His geçince bizi yeniden almaya iter. Gelişmiş ülkelerde insanlar gelirlerinin önemli kısmını ihtiyaç dışı ürünlere harcar; bu kararlar mantıktan çok kişilik, duygu ve trendlerle şekillenir.</p>
+                    <p>Satıcılar bunu yönlendirir: <strong>"sınırlı sayıda"</strong> (kıtlık), <strong>"herkes alıyor"</strong> (sosyal kanıt) ve önce yüksek fiyat söyleyip sonra indirim sunma ("çıpalama"). Robert Cialdini'nin "ön-ikna" fikrine göre, daha satış başlamadan dikkatini nasıl çektikleri kararını belirliyor.</p>
+                    <p>Uzun vadede en çok mutluluğu maddi mallar değil, deneyimler (örneğin bir tatil) getiriyor — düşük gelirliler içinse önce temel ihtiyaçlar.</p>
+                    <a class="lib-source" href="https://www.psychologytoday.com/us/basics/consumer-behavior" target="_blank" rel="noopener noreferrer">Kaynağı oku: Psychology Today →</a>
+                </div>
+            </details>
+
+            <!-- 5 -->
+            <details class="lib-item">
+                <summary>
+                    <span class="lib-emoji">🎯</span>
+                    <span>
+                        <span class="lib-q">Harcamanı tetikleyen 4 gizli düğme</span>
+                        <span class="lib-teaser">Günde bir kahvenin yıllık faturasını görünce duraksayacaksın.</span>
+                    </span>
+                    <span class="lib-chev">▾</span>
+                </summary>
+                <div class="lib-body">
+                    <p>Harcamanı çoğu zaman fark etmediğin tetikleyiciler yönetir:</p>
+                    <ul class="lib-list">
+                        <li><strong>Ruh hali</strong> — üzüntü, stres, can sıkıntısı "terapi alışverişine" iter. Panzehir: ücretsiz bir alternatif (yürüyüş, bir arkadaşı aramak).</li>
+                        <li><strong>Sosyal medya &amp; indirim baskısı</strong> — olumlu yorum + "son fırsat" aciliyeti "isteği" "ihtiyaca" çevirir. Panzehir: 24 saat bekle; dürtü çoğu zaman söner.</li>
+                        <li><strong>FOMO</strong> — başkalarının hayatıyla kıyas, "geri kalmama" harcaması. Panzehir: kendi hedefine odaklan.</li>
+                        <li><strong>Yaşam tarzı kayması</strong> — lüksün alışkanlığa dönüşmesi. Çarpıcı örnek: günde bir kahve aylık <strong>~168 birim</strong> eder.</li>
+                    </ul>
+                    <p>Uyarı işaretleri: bakiyene bakmaktan kaçınmak, her alımı bahaneyle haklı çıkarmak, alışveriş sonrası gelen pişmanlık.</p>
+                    <a class="lib-source" href="https://www.commbank.com.au/brighter/financial-education/the-hidden-triggers-behind-your-spending.html" target="_blank" rel="noopener noreferrer">Kaynağı oku: Commonwealth Bank →</a>
+                </div>
+            </details>
+
+            <!-- 6 -->
+            <details class="lib-item">
+                <summary>
+                    <span class="lib-emoji">👶</span>
+                    <span>
+                        <span class="lib-q">Para alışkanlıkların çocuklukta mı şekillendi?</span>
+                        <span class="lib-teaser">Bugünkü harcamalarının kökeni sandığından çok daha eski olabilir.</span>
+                    </span>
+                    <span class="lib-chev">▾</span>
+                </summary>
+                <div class="lib-body">
+                    <p>Harcama davranışını dört psikolojik tetikleyici yönlendirir: duygusal harcama (üzüntü/stres/kutlama), sosyal baskı ("komşuya yetişme"), <strong>çocukluk koşullanması</strong> (parayla kurduğun ilk deneyimler) ve pazarlama manipülasyonu (yapay ihtiyaç yaratma). Dijital çağda "anlık tatmin" arzusu bu etkileri daha da güçlendiriyor.</p>
+                    <p>Kontrolü geri almak için önerilen pratikler: zarf yöntemi ve sıfır-tabanlı bütçeleme gibi sistemler, motive eden net hedefler, tetikleyicileri yakalamak için farkındalık ve finansal okuryazarlık.</p>
+                    <p>Ana mesaj: harcama tamamen rasyonel değildir. Duygusal ve sosyal etkileri tanıdığında, finansal kontrolü yeniden eline alırsın.</p>
+                    <a class="lib-source" href="https://genesisfinancialgrp.com/blog/the-psychology-of-spending-understanding-and-controlling-your-financial-behaviors" target="_blank" rel="noopener noreferrer">Kaynağı oku: Genesis Financial Group →</a>
+                </div>
+            </details>
+
+        </section>
+
+        <p class="lib-disclaimer">
+            Bu kartlar, alanında saygın kaynaklardan derlenmiş kısa özetlerdir; yalnızca bilgilendirme amaçlıdır ve profesyonel finansal ya da psikolojik tavsiye yerine geçmez. Daha derinine inmek için her başlığın altındaki kaynağa tıkla.
+        </p>
+    </main>
+
+    <script>
+        // Tema toggle
+        (function() {
+            var btn = document.getElementById("themeToggle");
+            var setIcon = function() { btn.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙"; };
+            setIcon();
+            btn.addEventListener("click", function() {
+                var isDark = document.documentElement.classList.toggle("dark");
+                localStorage.setItem("maddiyat_theme", isDark ? "dark" : "light");
+                setIcon();
+            });
+        })();
+    </script>
+    <script>
+        // Auth gate (mevcut admin/admin sistemi)
+        var user = sessionStorage.getItem("maddiyat_user");
+        if (!user) {
+            window.location.href = "login.html";
+        }
+        document.getElementById("logoutBtn").addEventListener("click", function() {
+            sessionStorage.removeItem("maddiyat_user");
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+</html>
