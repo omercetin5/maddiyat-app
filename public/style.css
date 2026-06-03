@@ -878,8 +878,10 @@ textarea:focus {
 .play-btn-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1; }
 .play-btn-top { font-size: 10px; font-weight: 300; letter-spacing: -0.02em; opacity: 0.92; }
 .play-btn-main { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
+.store-buttons { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: flex-end; }
 
 @media (max-width: 720px) {
     .footer-inner { flex-direction: column; align-items: flex-start; }
     .footer-cta { align-items: flex-start; }
+    .store-buttons { justify-content: flex-start; }
 }
